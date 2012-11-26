@@ -7,7 +7,7 @@
 //
 
 #import "InstagramAuthViewController.h"
-#import "ApiKey.h"
+#import "InstagramAuthConfig.h"
 #import "NSString+QueryString.h"
 
 @interface InstagramAuthViewController ()
@@ -19,21 +19,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
-    instagramAuthWebView.delegate = self;
-    [self.view addSubview:instagramAuthWebView];
-
-    NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", INSTAGRAM_CLIENT_ID, INSTAGRAM_CALLBACK_BASE];
-    [instagramAuthWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    [self validateInstagramAuthConfig];
+    [self setupInstagramAuthWebView];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSString *url = [[request URL] absoluteString];
 
-    if ([url hasPrefix:INSTAGRAM_CALLBACK_BASE]) {
-        // Extract the token
+    if ([url hasPrefix:kInstagramAuthRedirectUrl]) {
         NSRange tokenRange = [[url lowercaseString] rangeOfString:@"#access_token="];
+
         if (tokenRange.location != NSNotFound) {
             NSString *token = [url substringFromIndex:tokenRange.location + tokenRange.length];
             if (instagramAuthDelegate) {
@@ -41,7 +36,6 @@
             }
         }
         else {
-            // Error, should be something like: error_reason=user_denied&error=access_denied&error_description=The+user+denied+your+request
             NSDictionary *params = [url dictionaryFromQueryComponents];
             if (instagramAuthDelegate) {
                 [instagramAuthDelegate instagramAuthFailed:[params objectForKey:@"error"]
@@ -54,6 +48,24 @@
     }
 
     return YES;
+}
+
+- (void) setupInstagramAuthWebView {
+    UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
+    instagramAuthWebView.delegate = self;
+    [self.view addSubview:instagramAuthWebView];
+
+    NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", kInstagramAuthClientId, kInstagramAuthRedirectUrl];
+    [instagramAuthWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+}
+
+- (void) validateInstagramAuthConfig {
+    if (
+            [kInstagramAuthRedirectUrl length] == 0 ||
+            [kInstagramAuthClientId length] == 0 ||
+            [kInstagramAuthClientSecret length] == 0) {
+        [NSException raise:@"kInstagramAuth* constants could not be empty. See InstagramAuthConfig.h file to setup Instagram constants." format:@""];
+    }
 }
 
 @end
