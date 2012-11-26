@@ -9,4 +9,4 @@ InstagramAuthViewController do all authorization and send messages to `instagram
 It also wraps some of the API requests. See `InstagramClient.h` for more
 
 ### Misc
-Instagram request wrapper by Stuart Hall, with fixes for ARC-compatibility (git://github.com/stuartkhall/Instagram.git)
+Instagram request wrapper by Stuart Hall, with fixes for ARC-compatibility (https://github.com/stuartkhall/Instagram)
