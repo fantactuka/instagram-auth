@@ -15,13 +15,12 @@
 
 @implementation InstagramAuthViewController
 
-@synthesize authWebView, instagramAuthDelegate;
+@synthesize instagramAuthDelegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:frame];
+    UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
     instagramAuthWebView.delegate = self;
     [self.view addSubview: instagramAuthWebView];
 

@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "InstagramAuthWebView.h"
 #import "InstagramAuthDelegate.h"
 
 @interface InstagramAuthViewController : UIViewController <UIWebViewDelegate>
