@@ -9,8 +9,8 @@
 
 @interface InstagramImage : InstagramModel
 
-@property (readonly) NSString* url;
-@property (readonly) NSInteger width;
-@property (readonly) NSInteger height;
+@property(readonly) NSString *url;
+@property(readonly) NSInteger width;
+@property(readonly) NSInteger height;
 
 @end

@@ -11,19 +11,19 @@
 
 @implementation InstagramMedia
 
-- (NSString*)description {
+- (NSString *)description {
     return [NSString stringWithFormat:@"Media : %@ by %@", self.linkUrl, self.user.username];
 }
 
-- (NSString*)identifier {
+- (NSString *)identifier {
     return [self.dictionary objectForKey:@"id"];
 }
 
-- (NSString*)linkUrl {
+- (NSString *)linkUrl {
     return [self.dictionary objectForKey:@"link"];
 }
 
-- (NSString*)caption {
+- (NSString *)caption {
     return [self.dictionary objectForKey:@"caption"];
 }
 
@@ -35,41 +35,41 @@
     return [[self.dictionary valueForKeyPath:@"likes.count"] intValue];
 }
 
-- (NSString*)filter {
+- (NSString *)filter {
     return [self.dictionary objectForKey:@"filter"];
 }
 
-- (InstagramUser*)user {
-    return (InstagramUser*)[InstagramUser modelWithDictionary:[self.dictionary objectForKey:@"user"]];
+- (InstagramUser *)user {
+    return (InstagramUser *) [InstagramUser modelWithDictionary:[self.dictionary objectForKey:@"user"]];
 }
 
-- (NSString*)locationIdentifier {
+- (NSString *)locationIdentifier {
     return [self.dictionary valueForKeyPath:@"location.id"];
 }
 
-- (NSString*)locationLatitude {
+- (NSString *)locationLatitude {
     return [self.dictionary valueForKeyPath:@"location.latitude"];
 }
 
-- (NSString*)locationLongitude {
+- (NSString *)locationLongitude {
     return [self.dictionary valueForKeyPath:@"location.longitude"];
 }
 
-- (NSString*)locationName {
+- (NSString *)locationName {
     return [self.dictionary valueForKeyPath:@"location.name"];
 }
 
-- (NSDate*)createdTime {
+- (NSDate *)createdTime {
     return [NSDate dateWithTimeIntervalSince1970:[[self.dictionary objectForKey:@"created_time"] intValue]];
 }
 
-- (NSDictionary*)images {
-    NSDictionary* rawDict = [self.dictionary objectForKey:@"images"];
-    NSMutableDictionary* imageDict = [NSMutableDictionary dictionaryWithCapacity:[rawDict count]];
-    for (NSString* key in [rawDict allKeys]) {
-        [imageDict setObject:(InstagramImage*)[InstagramImage modelWithDictionary:[rawDict objectForKey:key]] forKey:key];
+- (NSDictionary *)images {
+    NSDictionary *rawDict = [self.dictionary objectForKey:@"images"];
+    NSMutableDictionary *imageDict = [NSMutableDictionary dictionaryWithCapacity:[rawDict count]];
+    for (NSString *key in [rawDict allKeys]) {
+        [imageDict setObject:(InstagramImage *) [InstagramImage modelWithDictionary:[rawDict objectForKey:key]] forKey:key];
     }
     return imageDict;
 }
-         
+
 @end

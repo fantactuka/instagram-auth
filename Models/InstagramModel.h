@@ -9,12 +9,12 @@
 
 @interface InstagramModel : NSObject
 
-@property (nonatomic, retain) NSDictionary* dictionary;
+@property(nonatomic, retain) NSDictionary *dictionary;
 
 // Initialises an autoreleased model from a JSON dictionary
-+ (InstagramModel*)modelWithDictionary:(NSDictionary*)modelDictionary;
++ (InstagramModel *)modelWithDictionary:(NSDictionary *)modelDictionary;
 
 // Initialises an array of model from an a array of JSON dictionaries
-+ (NSArray*)modelsFromDictionaries:(NSArray*)dictionaries;
++ (NSArray *)modelsFromDictionaries:(NSArray *)dictionaries;
 
 @end

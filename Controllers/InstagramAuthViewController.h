@@ -11,6 +11,6 @@
 
 @interface InstagramAuthViewController : UIViewController <UIWebViewDelegate>
 
-@property (nonatomic, weak) id <InstagramAuthDelegate> instagramAuthDelegate;
+@property(nonatomic, weak) id <InstagramAuthDelegate> instagramAuthDelegate;
 
 @end

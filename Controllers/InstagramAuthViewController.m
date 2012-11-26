@@ -22,7 +22,7 @@
 
     UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:self.view.frame];
     instagramAuthWebView.delegate = self;
-    [self.view addSubview: instagramAuthWebView];
+    [self.view addSubview:instagramAuthWebView];
 
     NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", INSTAGRAM_CLIENT_ID, INSTAGRAM_CALLBACK_BASE];
     [instagramAuthWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];

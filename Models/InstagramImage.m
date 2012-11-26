@@ -9,7 +9,7 @@
 
 @implementation InstagramImage
 
-- (NSString*)url {
+- (NSString *)url {
     return [self.dictionary objectForKey:@"url"];
 }
 

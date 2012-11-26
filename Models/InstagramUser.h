@@ -11,14 +11,14 @@
 @interface InstagramUser : InstagramModel
 
 // Public properties
-@property (readonly) NSString* identifier;
-@property (readonly) NSString* fullname;
-@property (readonly) NSString* username;
-@property (readonly) NSString* bio;
-@property (readonly) NSString* website;
-@property (readonly) NSString* profilePictureUrl;
-@property (readonly) NSInteger followedByCount;
-@property (readonly) NSInteger followersCount;
-@property (readonly) NSInteger mediaCount;
+@property(readonly) NSString *identifier;
+@property(readonly) NSString *fullname;
+@property(readonly) NSString *username;
+@property(readonly) NSString *bio;
+@property(readonly) NSString *website;
+@property(readonly) NSString *profilePictureUrl;
+@property(readonly) NSInteger followedByCount;
+@property(readonly) NSInteger followersCount;
+@property(readonly) NSInteger mediaCount;
 
 @end

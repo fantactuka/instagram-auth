@@ -11,31 +11,31 @@
 
 #pragma mark - Public properties
 
-- (NSString*)description {
+- (NSString *)description {
     return [NSString stringWithFormat:@"User : %@ (%@) - %@", self.fullname, self.username, self.identifier];
 }
 
-- (NSString*)identifier {
+- (NSString *)identifier {
     return [self.dictionary objectForKey:@"id"];
 }
 
-- (NSString*)fullname {
+- (NSString *)fullname {
     return [self.dictionary objectForKey:@"full_name"];
 }
 
-- (NSString*)username {
+- (NSString *)username {
     return [self.dictionary objectForKey:@"username"];
 }
 
-- (NSString*)bio {
+- (NSString *)bio {
     return [self.dictionary objectForKey:@"bio"];
 }
 
-- (NSString*)website {
+- (NSString *)website {
     return [self.dictionary objectForKey:@"website"];
 }
 
-- (NSString*)profilePictureUrl {
+- (NSString *)profilePictureUrl {
     return [self.dictionary objectForKey:@"profile_picture"];
 }
 
