@@ -20,9 +20,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    CGRect frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    UIWebView *instagramAuthWebView = [[UIWebView alloc] initWithFrame:frame];
+    instagramAuthWebView.delegate = self;
+    [self.view addSubview: instagramAuthWebView];
+
     NSString *url = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=%@&redirect_uri=%@&response_type=token", INSTAGRAM_CLIENT_ID, INSTAGRAM_CALLBACK_BASE];
-    authWebView.delegate = self;
-    [authWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
+    [instagramAuthWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
